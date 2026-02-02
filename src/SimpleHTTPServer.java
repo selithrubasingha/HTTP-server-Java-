@@ -29,6 +29,11 @@ public class SimpleHTTPServer {
                 String HTTPResponse = "HTTP/1.1 200 OK\r\n\r\n" + today;
 
                 socket.getOutputStream().write(HTTPResponse.getBytes("UTF-8"));
+                /*
+                What is this UTF-8 ? Universal character set tranformation format
+                backend -"selith" --> need to send it to the browser or frontend --> but request need to be travelled in BITS
+                so utf is travelling to bits .
+                 */
 
             }
 
