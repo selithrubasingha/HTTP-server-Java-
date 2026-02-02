@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Ultra Cool Demo Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+          --bg1: #0f2027;
+          --bg2: #203a43;
+          --bg3: #2c5364;
+          --accent: #6cf2c2;
+          --pink: #ff6ec7;
+          --glass: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          font-family: "Inter", sans-serif;
+        }
+
+        html {
+          scroll-behavior: smooth;
+        }
+
+        body {
+          min-height: 100vh;
+          background: linear-gradient(120deg, var(--bg1), var(--bg2), var(--bg3));
+          background-size: 300% 300%;
+          animation: bgShift 15s ease infinite;
+          color: white;
+          overflow-x: hidden;
+        }
+
+        @keyframes bgShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+
+        /* Floating blobs */
+        .blob {
+          position: absolute;
+          width: 300px;
+          height: 300px;
+          background: radial-gradient(circle, var(--pink), transparent 70%);
+          filter: blur(80px);
+          opacity: 0.6;
+          animation: float 18s infinite alternate ease-in-out;
+          z-index: -1;
+        }
+
+        .blob:nth-child(1) {
+          top: 10%;
+          left: 10%;
+        }
+
+        .blob:nth-child(2) {
+          bottom: 10%;
+          right: 15%;
+          animation-delay: 4s;
+          background: radial-gradient(circle, var(--accent), transparent 70%);
+        }
+
+        @keyframes float {
+          to {
+            transform: translate(80px, -60px) scale(1.1);
+          }
+        }
+
+        /* Navbar */
+        nav {
+          position: fixed;
+          top: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: min(90%, 1000px);
+          padding: 12px 24px;
+          border-radius: 20px;
+          backdrop-filter: blur(15px);
+          background: var(--glass);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+          z-index: 100;
+        }
+
+        nav h1 {
+          font-weight: 900;
+          letter-spacing: 1px;
+        }
+
+        nav a {
+          text-decoration: none;
+          color: white;
+          margin-left: 20px;
+          opacity: 0.8;
+          transition: 0.3s;
+        }
+
+        nav a:hover {
+          opacity: 1;
+          color: var(--accent);
+        }
+
+        /* Hero */
+        .hero {
+          min-height: 100vh;
+          display: grid;
+          place-items: center;
+          padding: 120px 20px;
+          text-align: center;
+        }
+
+        .hero h2 {
+          font-size: clamp(3rem, 6vw, 5rem);
+          line-height: 1.1;
+          background: linear-gradient(90deg, var(--accent), var(--pink));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: shimmer 6s linear infinite;
+        }
+
+        @keyframes shimmer {
+          to {
+            background-position: 300%;
+          }
+        }
+
+        .hero p {
+          max-width: 600px;
+          margin: 20px auto;
+          font-size: 1.1rem;
+          opacity: 0.85;
+        }
+
+        .btn {
+          display: inline-block;
+          margin-top: 30px;
+          padding: 14px 34px;
+          border-radius: 40px;
+          background: linear-gradient(90deg, var(--accent), var(--pink));
+          color: black;
+          font-weight: 700;
+          text-decoration: none;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+          transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+          transform: translateY(-6px) scale(1.05);
+          box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+        }
+
+        /* Cards section */
+        section {
+          padding: 120px 8%;
+        }
+
+        .grid {
+          display: grid;
+          gap: 30px;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        .card {
+          background: var(--glass);
+          border-radius: 24px;
+          padding: 30px;
+          backdrop-filter: blur(14px);
+          border: 1px solid rgba(255,255,255,0.15);
+          box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+          transition: transform 0.4s, box-shadow 0.4s;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .card::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+          transform: translateX(-100%);
+          transition: 0.6s;
+        }
+
+        .card:hover::after {
+          transform: translateX(100%);
+        }
+
+        .card:hover {
+          transform: translateY(-12px) rotateX(6deg);
+          box-shadow: 0 30px 70px rgba(0,0,0,0.8);
+        }
+
+        .card h3 {
+          margin-bottom: 10px;
+        }
+
+        footer {
+          text-align: center;
+          padding: 60px;
+          opacity: 0.6;
+          font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Animated blobs -->
+<div class="blob"></div>
+<div class="blob"></div>
+
+<!-- Navbar -->
+<nav>
+    <h1>⚡ NeoUI</h1>
+    <div>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#demo">Demo</a>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div>
+        <h2>Build. Animate. Impress.</h2>
+        <p>
+            A futuristic demo landing page with animated gradients,
+            glass cards, floating lights, and smooth UI vibes.
+        </p>
+        <a href="#features" class="btn">Explore Magic</a>
+    </div>
+</section>
+
+<!-- Features -->
+<section id="features">
+    <div class="grid">
+        <div class="card">
+            <h3>🌌 Dynamic Background</h3>
+            <p>Animated multi-color gradients that feel alive and modern.</p>
+        </div>
+        <div class="card">
+            <h3>🧊 Glass UI</h3>
+            <p>Frosted-glass cards with subtle reflections and depth.</p>
+        </div>
+        <div class="card">
+            <h3>🚀 Hover Effects</h3>
+            <p>3D tilts, glowing sweeps, and silky transitions.</p>
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section id="about">
+    <div class="grid">
+        <div class="card">
+            <h3>⚙ Pure HTML + CSS</h3>
+            <p>No frameworks. Just modern layout, animation, and design.</p>
+        </div>
+        <div class="card">
+            <h3>📱 Responsive</h3>
+            <p>Looks great on laptops, tablets, and phones.</p>
+        </div>
+        <div class="card">
+            <h3>🎨 Designer Feel</h3>
+            <p>Perfect for hackathon demos, portfolios, or landing pages.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Demo -->
+<section id="demo">
+    <div class="hero" style="min-height:auto">
+        <div>
+            <h2>Ready to Ship 🚢</h2>
+            <p>Drop this file into a project and start customizing.</p>
+            <a href="#" class="btn">Clone the Vibe</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2026 • Crafted for Demo Purposes • Ultra Cool CSS ✨
+</footer>
+
+</body>
+</html>
