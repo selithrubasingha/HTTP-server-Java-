@@ -23,15 +23,27 @@ public class Routing {
 
                 if (!line.isEmpty()) {
                     System.out.println(path);
-                    path = reader.readLine();
+
                 }
 
+                String message ="";
+                if (path.equals("/")){
+                    message = "I like pancakes";
 
+                }else if(path.equals("/sasindu")){
+                    message = "Bimmala ew palayan yanna!";
+                }else if(path.equals("/lahiru")){
+                    message = "Lahiru lahiru lahiru PIPEEE lahiru";
+
+                }else if(path.equals("/pramod")){
+                    message = "Boru marci dannepa Pramod! Api dnnw aca pathultm gihin kyl";
+
+                }
 
 //            Giving out to the HTTP server
 
                 Date today = new Date();
-                String HTTPResponse = "HTTP/1.1 200 OK\r\n\r\n" + today;
+                String HTTPResponse = "HTTP/1.1 200 OK\r\n\r\n" + message;
 
                 socket.getOutputStream().write(HTTPResponse.getBytes(StandardCharsets.UTF_8));
             }
