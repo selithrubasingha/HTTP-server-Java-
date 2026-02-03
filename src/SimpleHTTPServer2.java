@@ -25,15 +25,22 @@ public class SimpleHTTPServer2 {
 
                 if (Files.exists(filePath)) {
                     // 3. Determine MIME Type
+                    /*
+                    probe content type ? automatically find the content type ?
+
+                     */
                     String contentType = Files.probeContentType(filePath);
+
+                    //dude ! a byte array ???!
                     byte[] fileContent = Files.readAllBytes(filePath);
 
                     // 4. Send the "200 OK" Response
+                    //where are we gonna write the header?
                     String header = "HTTP/1.1 200 OK\r\n" +
                             "Content-Type: " + contentType + "\r\n" +
                             "Content-Length: " + fileContent.length + "\r\n" +
                             "\r\n";
-
+                    // can we write seperately ?
                     socket.getOutputStream().write(header.getBytes());
                     socket.getOutputStream().write(fileContent);
                 } else {
