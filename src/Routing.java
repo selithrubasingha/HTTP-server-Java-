@@ -6,7 +6,6 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
-
 public class Routing {
 
     public static void main(String[] args) throws Exception {
